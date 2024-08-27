@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Skeletal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2 id="counter">globally mr skeletal has been thanked 0 times</h2>
+    <img id="gif" src="skeleton-doot-still.png" alt="Mr. Skeletal GIF">
+    <button id="playButton">thank mr skeletal</button>
+    <audio id="dootSound" src="doot-sound.mp3"></audio>
+
+    <script type="module">
+        import { firebaseConfig } from './config.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const gif = document.getElementById('gif');
+        const playButton = document.getElementById('playButton');
+        const dootSound = document.getElementById('dootSound');
+        const counterDisplay = document.getElementById('counter');
+        let isPlaying = false;
+
+        async function incrementCounter() {
+            const counterRef = doc(db, "global-counter", "thank-count");
+
+            await updateDoc(counterRef, {
+                count: increment(1)
+            });
+
+            const docSnap = await getDoc(counterRef);
+            if (docSnap.exists()) {
+                const thankCount = docSnap.data().count;
+                counterDisplay.textContent = `globally mr skeletal has been thanked ${thankCount} times`;
+            } else {
+                console.log("No such document!");
+            }
+        }
+
+        async function playGif() {
+            gif.src = "skeleton-doot.gif"; 
+            isPlaying = true;
+
+            setTimeout(() => {
+                dootSound.play();
+            }, 1250);
+
+            setTimeout(() => {
+                incrementCounter();
+            }, 1480);
+
+            setTimeout(() => {
+                gif.src = "skeleton-doot-still.png";
+                isPlaying = false;
+            }, 3200);  
+        }
+
+        playButton.addEventListener('click', function() {
+            if (!isPlaying) {
+                playGif();
+            }
+        });
+
+        window.onload = async function() {
+            gif.src = "skeleton-doot-still.png";
+
+            const counterRef = doc(db, "global-counter", "thank-count");
+            const docSnap = await getDoc(counterRef);
+            if (docSnap.exists()) {
+                const thankCount = docSnap.data().count;
+                counterDisplay.textContent = `globally mr skeletal has been thanked ${thankCount} times`;
+            } else {
+                console.log("doesnt exist!");
+            }
+        };
+    </script>
+</body>
+</html>
