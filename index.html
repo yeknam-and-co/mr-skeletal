@@ -14,11 +14,15 @@
     <meta property="og:site_name" content="mr skeletal">
 </head>
 <body>
+    <h1 id ='message'>thank him can we hit 2000 by 5 pm est</h1>
+    
     <h2 id="counter">globally mr skeletal has been thanked 0 times</h2>
     <img id="gif" src="skeleton-doot-still.png" alt="da gif">
     <button id="playButton">thank mr skeletal</button>
     <audio id="dootSound" src="doot-sound.mp3"></audio>
 
+    
+    
     <!-- Main JavaScript Code -->
     <script type="module">
         import { firebaseConfig } from './config.js';
@@ -33,6 +37,7 @@
         const playButton = document.getElementById('playButton');
         const dootSound = document.getElementById('dootSound');
         const counterDisplay = document.getElementById('counter');
+        const generalmessage = document.getElementById('message');
         let isPlaying = false;
 
         async function incrementCounter() {
