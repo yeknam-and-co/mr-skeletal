@@ -10,6 +10,10 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
 }
 
+h2 {
+    font-weight: normal;
+}
+
 button {
     margin-top: 20px;
     padding: 10px 20px;
