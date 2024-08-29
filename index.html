@@ -6,7 +6,6 @@
     <title>mr skeletal</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta charset="UTF-8">
     <meta property="og:title" content="mr skeletal">
     <meta property="og:description" content="thank mr skeletal">
     <meta property="og:url" content="https://yeknam-and-co.github.io/mr-skeletal/">
@@ -14,113 +13,12 @@
     <meta property="og:site_name" content="mr skeletal">
 </head>
 <body>
-    <h1 id ='message'>tyler zou is my opp</h1>
-    
+    <h1 id='message'>tyler zou is my opp</h1>
     <h2 id="counter">globally mr skeletal has been thanked 0 times</h2>
-    <img id="gif" src="skeleton-doot-still.png" alt="da gif", width="300px">
+    <img id="gif" src="skeleton-doot-still.png" alt="da gif" width="300px">
     <button id="playButton">thank mr skeletal</button>
     <audio id="dootSound" src="doot-sound.mp3"></audio>
 
-    
-    
-    <!-- Main JavaScript Code -->
-    <script type="module">
-        import { firebaseConfig } from './config.js';
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
-        import { getDatabase, ref, get, set, update, increment, onValue } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        const gif = document.getElementById('gif');
-        document.getElementById('gif').style.width="300px"
-        const playButton = document.getElementById('playButton');
-        const dootSound = document.getElementById('dootSound');
-        const counterDisplay = document.getElementById('counter');
-        const generalmessage = document.getElementById('message');
-        let isPlaying = false;
-        
-        const buttons = document.getElementsByTagName("button");
-
-        for (const button of buttons) {
-  button.addEventListener("click", createRipple);
-}
-
-
-        async function incrementCounter() {
-            const counterRef = ref(db, 'global-counter/thank-count');
-            
-
-            // Use a transaction to increment the counter
-            await update(counterRef, {
-                count: increment(1)
-            });
-
-            // Retrieve the updated counter value
-            get(counterRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    const thankCount = snapshot.val().count;
-                    counterDisplay.textContent = `globally mr skeletal has been thanked ${thankCount} times`;
-                } else {
-                    console.log("No data available");
-                }
-            }).catch((error) => {
-                console.error("Error updating counter: ", error);
-            });
-        }
-
-        async function playGif() {
-            gif.src = "skeleton-doot.gif"; 
-            isPlaying = true;
-
-            dootSound.play();
-
-            setTimeout(() => {
-                incrementCounter();
-            }, 1000);
-
-            setTimeout(() => {
-                gif.src = "skeleton-doot-still.png";
-                isPlaying = false;
-            }, 2204);  
-        }
-
-        playButton.addEventListener('click', function() {
-            if (!isPlaying) {
-                playGif();
-            }
-        });
-
-        window.onload = function() {
-            gif.src = "skeleton-doot-still.png";
-            
-            // Initialize the counter on load
-            const counterRef = ref(db, 'global-counter/thank-count');
-            onValue(counterRef, (snapshot) => {
-                if (snapshot.exists()) {
-                    const thankCount = snapshot.val().count;
-                    counterDisplay.textContent = `globally mr skeletal has been thanked ${thankCount} times`;
-                } else {
-                    console.log("No Uhhh available");
-                }
-            });
-        };
-
-        function createRipple(event) {
-            if (!isPlaying) {
-            const button = event.currentTarget;
-            const circle = document.createElement("span");
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - (button.offsetLeft + radius)}px`;
-            circle.style.top = `${event.clientY - (button.offsetTop + radius)}px`;
-            circle.classList.add("ripple"); 
-            const ripple = button.getElementsByClassName("ripple")[0];
-
-            button.appendChild(circle);}
-        }
-    </script>
+    <script type="module" src="scripts.js"></script>
 </body>
 </html>
