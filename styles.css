@@ -1,56 +1,56 @@
 body {
-    background-color: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Noto Sans JP', sans-serif;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
 h2 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 h1 {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: black;
-    color: white;
-    border: 2px solid white;
-    border-radius: 5px;
-    font-family: 'Noto Sans JP', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    width: 130px;
-    text-align: center;
-    border-radius: 50px;
-    position: relative;
-    overflow: hidden;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-family: 'Noto Sans JP', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 130px;
+  text-align: center;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
 }
 
 span.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 2000ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
 @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
+  to {
+    transform: scale(4);
+    opacity: 0;
   }
-  
+}
+
