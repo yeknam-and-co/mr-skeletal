@@ -17,7 +17,7 @@
     <h1 id ='message'>thank him can we hit 2000 by 5 pm est</h1>
     
     <h2 id="counter">globally mr skeletal has been thanked 0 times</h2>
-    <img id="gif" src="skeleton-doot-still.png" alt="da gif">
+    <img id="gif" src="skeleton-doot-still.png" alt="da gif", width="300px">
     <button id="playButton">thank mr skeletal</button>
     <audio id="dootSound" src="doot-sound.mp3"></audio>
 
@@ -34,11 +34,13 @@
         const db = getDatabase(app);
 
         const gif = document.getElementById('gif');
+        document.getElementById('gif').style.width="300px"
         const playButton = document.getElementById('playButton');
         const dootSound = document.getElementById('dootSound');
         const counterDisplay = document.getElementById('counter');
         const generalmessage = document.getElementById('message');
         let isPlaying = false;
+        
 
         async function incrementCounter() {
             const counterRef = ref(db, 'global-counter/thank-count');
@@ -80,6 +82,7 @@
         playButton.addEventListener('click', function() {
             if (!isPlaying) {
                 playGif();
+                playButton.addEventListener("click", createRipple);
             }
         });
 
@@ -97,6 +100,23 @@
                 }
             });
         };
+
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - (button.offsetLeft + radius)}px`;
+            circle.style.top = `${event.clientY - (button.offsetTop + radius)}px`;
+            circle.classList.add("ripple"); 
+            const ripple = button.getElementsByClassName("ripple")[0];
+
+            button.appendChild(circle);
+
+        }
+
+    
     </script>
 </body>
 </html>
