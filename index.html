@@ -65,18 +65,16 @@
             gif.src = "skeleton-doot.gif"; 
             isPlaying = true;
 
-            setTimeout(() => {
-                dootSound.play();
-            }, 1004);
+            dootSound.play();
 
             setTimeout(() => {
                 incrementCounter();
-            }, 2003);
+            }, 1000);
 
             setTimeout(() => {
                 gif.src = "skeleton-doot-still.png";
                 isPlaying = false;
-            }, 3200);  
+            }, 2204);  
         }
 
         playButton.addEventListener('click', function() {
