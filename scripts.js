@@ -79,6 +79,7 @@ window.onload = function() {
 
 function createRipple(event) {
     if (!isPlaying) {
+        deleteRipple();
         const button = event.currentTarget;
         const circle = document.createElement("span");
         const diameter = Math.max(button.clientWidth, button.clientHeight);
@@ -94,7 +95,11 @@ function createRipple(event) {
 
 
 function deleteRipple(){
-    var ball = button.getElementsByClassName("ripple")[0];
-    ball.classList.remove("ripple");
+
+    setTimeout(() => {
+        var ball = button.getElementsByClassName("ripple")[0];
+        ball.classList.remove("ripple");
+    }, 2100);  
+
 }
 }
