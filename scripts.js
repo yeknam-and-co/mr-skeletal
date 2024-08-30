@@ -89,17 +89,11 @@ function createRipple(event) {
         circle.style.top = `${event.clientY - (button.offsetTop + radius)}px`;
         circle.classList.add("ripple"); 
         const ripple = button.getElementsByClassName("ripple")[0];
+        
+        if (ripple) {
+            ripple.remove();
+          }
 
         button.appendChild(circle);
     }
-
-
-function deleteRipple(){
-
-    setTimeout(() => {
-        var ball = button.getElementsByClassName("ripple")[0];
-        ball.classList.remove("ripple");
-    }, 2100);  
-
-}
 }
