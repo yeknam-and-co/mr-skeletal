@@ -74,6 +74,9 @@ window.onload = function() {
     });
 };
 
+
+
+
 function createRipple(event) {
     if (!isPlaying) {
         const button = event.currentTarget;
@@ -88,4 +91,10 @@ function createRipple(event) {
 
         button.appendChild(circle);
     }
+
+
+function deleteRipple(){
+    var ball = button.getElementsByClassName("ripple")[0];
+    ball.classList.remove("ripple");
+}
 }
